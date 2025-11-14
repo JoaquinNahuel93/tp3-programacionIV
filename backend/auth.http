@@ -1,0 +1,25 @@
+@url=http://localhost:3000
+
+### Registro
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "Pepe",
+  "email": "pepe@example.com",
+  "password": "hola1234"
+}
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "pepe@example.com",
+  "password": "hola1234"
+}
+
+###
+@token = {{login.response.body.token}}
+

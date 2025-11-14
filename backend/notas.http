@@ -1,0 +1,56 @@
+@url=http://localhost:3000
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "pepe@example.com",
+  "password": "hola1234"
+}
+
+###
+@token = {{login.response.body.token}}
+
+### Obtener notas de un alumno en una materia
+GET {{url}}/notas/1/1
+Authorization: Bearer {{token}}
+
+### Crear notas para un alumno/materia
+POST {{url}}/notas/1/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nota1": 8,
+  "nota2": 9,
+  "nota3": 7
+}
+
+### Actualizar notas
+PUT {{url}}/notas/1/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nota1": 9.5,
+  "nota2": 9,
+  "nota3": 8
+}
+
+### Listar todas las notas de un alumno
+GET {{url}}/notas/alumno/1
+Authorization: Bearer {{token}}
+
+### Listar todas las notas de una materia
+GET {{url}}/notas/materia/1
+Authorization: Bearer {{token}}
+
+### Promedio de un alumno en una materia
+GET {{url}}/notas/promedio/1/1
+Authorization: Bearer {{token}}
+
+### Eliminar notas de un alumno en una materia
+DELETE {{url}}/notas/1/1
+Authorization: Bearer {{token}}
